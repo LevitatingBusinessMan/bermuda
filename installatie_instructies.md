@@ -1,7 +1,7 @@
 # Python installeren
 Installeer Python via: https://www.python.org/
 
-Zorg dat je `Add python.exe to PATH` aantikt bij de installatie.
+Bij Windows zorg ervoor dat je `Add python.exe to PATH` aantikt bij de installatie.
 ![](https://i.imgur.com/DEOPocU.png)
 
 # Bermuda bestanden downloaden
@@ -20,7 +20,7 @@ git clone https://github.com/LevitatingBusinessMan/bermuda.git
 Dit vormt een folder genaamd "bermuda met de bestanden". In die folder kan je via `git pull origin master` zorgen dat je op de meest recente versie zit.
 
 # Uitvoeren
-### Terminal open in de bermuda folder
+### Terminal open in de bermuda folder op MacOS
 Nadat je de bermuda bestanden gedownload hebt moet je ze uitvoeren. Het makkelijkst is om ze uit te voeren via je terminal. Daarvoor moet je de juiste folder openen in je terminal. Als je de `bermuda` folder uitgepakt hebt op je bureablad, kan je via Spotlight de Terminal open en `cd /Users/<gebruiker>/Desktop/bermuda` uitvoeren (`<gebruiker>` vervangen met je eigen username). Als je eenmaal in de juiste folder zit kan je met `ls` de python bestanden zien.
 
 Er is ook een manier om dit knopje toe te voegen aan Finder. Zie https://stugon.com/open-terminal-in-current-folder-location-mac/.
