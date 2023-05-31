@@ -7,6 +7,8 @@ from random import random
 from osc4py3.as_eventloop import *
 from osc4py3 import oscmethod as osm
 
+OSC_PORT = 3333
+
 bearing = 0
 target_bearing = 0
 rotate_speed = 18 # degrees per second
@@ -16,7 +18,10 @@ SECONDS_TILL_NATURAL_DEVIATION=2
 natural_deviation = 0
 
 osc_startup()
-osc_udp_server("0.0.0.0", 3333, "compass")
+osc_udp_server("0.0.0.0", OSC_PORT, "compass")
+
+print(f"OSCP server start op port {OSC_PORT}")
+print("Pas de richting van de kompas aan via OSCP: /set_compass <richting> <snelheid>")
 
 def set_compass(target, speed):
 	print(f"Received set_compass: {target} {speed}")
