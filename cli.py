@@ -18,11 +18,10 @@ print("""
 
 print("Please login to continue:")
 
-password = ""
-while password != "COLOMBUS":
-	password = pwinput.pwinput()
-	if password != "COLOMBUS":
-		print("Wrong password, please try again.")
+PASSWORD = "COLOMBUS"
+
+while (input_pass := pwinput.pwinput()) != PASSWORD and input_pass != PASSWORD.lower():
+	print("Wrong password, please try again.")
 
 
 #Clear screen sequence
