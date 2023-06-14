@@ -45,8 +45,8 @@ Als je in de homefolder (`/home/pi`) het `git clone` command uitvoert, komen de 
 #### Via LXDE
 Dit is de makkelijkste manier.
 
-In de folder `/etc/xdg/lxsession/LXDE-pi/autostart` kan je progamma's automatisch laten starten als de grafisch omgeving van de Raspberry Pi start.
-Je kan de folder via SSH bewerken met `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`.
+In het bestand `/etc/xdg/lxsession/LXDE-pi/autostart` kan je progamma's automatisch laten starten als de grafisch omgeving van de Raspberry Pi start.
+Je kan het bestand via SSH bewerken met `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`.
 Voeg daar bijvoorbeeld `@python3 /home/pi/bermuda/radar.py` om de radar automatisch te starten.
 
 Zie [hier](https://forums.raspberrypi.com/viewtopic.php?t=294014) meer informatie.
