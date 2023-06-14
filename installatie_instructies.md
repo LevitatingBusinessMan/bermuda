@@ -37,3 +37,28 @@ Je kan nu de progamma's uitvoeren via `python3 <bestandsnaam.py>`.
 Er zijn nu 3 progamma's, `cli.py` (SHIP-OS), `radar.py` en `compass.py`.
 
 Dus om de compass te starten moet je `python3 compass.py` uitvoeren.
+
+# Automatiseren van de progamma's op een raspberry pi
+Als je in de homefolder (`/home/pi`) het `git clone` command uitvoert, komen de bestanden te staan in `/home/pi/bermuda`.
+
+
+#### Via LXDE
+Dit is de makkelijkste manier.
+
+In de folder `/etc/xdg/lxsession/LXDE-pi/autostart` kan je progamma's automatisch laten starten als de grafisch omgeving van de Raspberry Pi start.
+Je kan de folder via SSH bewerken met `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`.
+Voeg daar bijvoorbeeld `@python3 /home/pi/bermuda/radar.py` om de radar automatisch te starten.
+
+Zie [hier](https://forums.raspberrypi.com/viewtopic.php?t=294014) meer informatie.
+
+#### Via systemd
+Dit is hoe ik pipresents en dergelijken heb geconfigureerd automatisch te starten.
+
+Je moet dan "service" bestanden toevoegen aan de `~/.config/systemd/user` folder voor elk progamma wat je automatisch wilt opstarten.
+
+Ik heb al een aantal van deze bestanden gemaakt, en die zitten bij de rest van de code.
+Je kan dan de `.service` bestanden kopieren naar `~/.config/systemd/user`.
+Doe dat door `cp *.service ~/.config/systemd/user` uit te voeren binnen de `/home/pi/bermuda` folder.
+
+Je kan dan bijvoorbeeld de radar starten met `systemctl --user start radar`. En zorgen dat de radar automatisch start met `systemctl --user enable radar`.
+

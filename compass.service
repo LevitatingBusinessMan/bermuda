@@ -1,0 +1,5 @@
+[Unit]
+Description=Bermuda kompas
+
+[Service]
+ExecStart=python /home/pi/bermuda/compass.py
