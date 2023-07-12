@@ -46,9 +46,7 @@ else:
 clock = pygame.time.Clock()
 
 # cat compass.svg | sed s/#333333/#00ff00/ | sed s/#ffffff/#000000/ > compass_green.svg
-svgfile = open("compass_green.svg", "r")
-svg = svgfile.read()
-compass = pygame.image.load(io.BytesIO(svg.encode()))
+compass = pygame.image.load("compass_green.svg")
 
 def draw():
 	c_bearing = bearing + natural_deviation
