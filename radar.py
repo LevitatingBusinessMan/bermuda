@@ -23,7 +23,7 @@ dots = [] # a list of dots, a dot is a tuple like: (x,y,size,timestamp)
 def draw():
 
 		# draw tail
-		trail_length = 250 #in degrees
+		trail_length = 100 #in degrees
 		line_multiplier = 1 #lines per degree
 		thickness = 6
 		max_green = 100 #where 255 makes it just as bright as the initial line
