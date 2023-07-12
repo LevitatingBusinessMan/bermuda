@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import pygame,math
+import os
 
 # Show mother ship
 # with name, NSE
@@ -12,7 +13,10 @@ green = (0,255,0)
 
 size = [800,600]
 radar_radius = 250
-screen = pygame.display.set_mode(size)
+if os.environ.get("FULLSCREEN") == "1":
+    screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+else:
+    screen = pygame.display.set_mode(size)
 
 clock = pygame.time.Clock()
 

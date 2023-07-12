@@ -3,6 +3,7 @@ import pygame
 import math
 import io
 from random import random
+import os
 
 from osc4py3.as_eventloop import *
 from osc4py3 import oscmethod as osm
@@ -37,7 +38,10 @@ pygame.init()
 pygame.display.set_caption('Bermuda compass')
 
 size = [800,600]
-screen = pygame.display.set_mode(size)
+if os.environ.get("FULLSCREEN") == "1":
+    screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+else:
+    screen = pygame.display.set_mode(size)
 
 clock = pygame.time.Clock()
 
