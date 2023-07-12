@@ -38,9 +38,12 @@ Er zijn nu 3 progamma's, `cli.py` (SHIP-OS), `radar.py` en `compass.py`.
 
 Dus om de compass te starten moet je `python3 compass.py` uitvoeren.
 
+Om de radar of compass in fullscreen te openen voeg je `fullscreen` toe aan het commando, bijvoorbeeld `python3 radar.py fullscreen`.
+
 # Automatiseren van de progamma's op een raspberry pi
 Als je in de homefolder (`/home/pi`) het `git clone` command uitvoert, komen de bestanden te staan in `/home/pi/bermuda`.
 
+Installeer ook de `python3-sdl2` en `unclutter` packages: `sudo apt install python3-sdl2 unclutter`.
 
 #### Via LXDE
 Dit is de makkelijkste manier.
@@ -50,6 +53,17 @@ Je kan het bestand via SSH bewerken met `sudo nano /etc/xdg/lxsession/LXDE-pi/au
 Voeg daar bijvoorbeeld `@python3 /home/pi/bermuda/radar.py` om de radar automatisch te starten.
 
 Zie [hier](https://forums.raspberrypi.com/viewtopic.php?t=294014) meer informatie.
+
+Je kan de commando's die er al staan deactieveren met een `#`, waardoor de grafische omgeving van de pi niet volledig opstart.
+Daarnaast kan je `unclutter` gebruiken om de cursor weg te halen.
+Voorbeeld configuratie:
+```SH
+#@lxpanel --profile LXDE-pi
+#@pcmanfm --desktop --profile LXDE-pi
+#@xscreensaver -no-splash
+@python3 /home/pi/bermuda/radar.py fullscreen
+@unclutter -idle 0
+```
 
 #### Via systemd
 Dit is hoe ik pipresents en dergelijken heb geconfigureerd automatisch te starten.
