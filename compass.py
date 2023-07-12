@@ -4,6 +4,7 @@ import math
 import io
 from random import random
 import os
+import sys
 
 from osc4py3.as_eventloop import *
 from osc4py3 import oscmethod as osm
@@ -37,8 +38,8 @@ osc_method("/set_compass", set_compass)
 pygame.init()
 pygame.display.set_caption('Bermuda compass')
 
-size = [800,600]
-if os.environ.get("FULLSCREEN") == "1":
+size = [1280,1024]
+if "fullscreen" in sys.argv:
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 else:
     screen = pygame.display.set_mode(size)
@@ -46,7 +47,8 @@ else:
 clock = pygame.time.Clock()
 
 # cat compass.svg | sed s/#333333/#00ff00/ | sed s/#ffffff/#000000/ > compass_green.svg
-compass = pygame.image.load("compass_green.svg")
+dirname = os.path.dirname(__file__)
+compass = pygame.image.load(os.path.join(dirname, 'compass_green.svg'))
 
 def draw():
 	c_bearing = bearing + natural_deviation
