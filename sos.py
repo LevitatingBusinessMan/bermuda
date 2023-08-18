@@ -6,6 +6,22 @@ class MyTestApp(npyscreen.NPSAppManaged):
         self.registerForm("MAIN", MainForm())
         self.registerForm("KOERS", BerekenKoers())
         self.registerForm("WATEROVERLAST", WaterOverlast())
+        self.registerForm("PASSWORDGATE", PasswordGate())
+
+
+
+class PasswordGate(npyscreen.Form):
+    def create(self):
+        self.add(npyscreen.FixedText, editable=False, value="Welkom, voor het wachtwoord in om toegang te krijgen tot het Ship Operating System!")
+        self.password = self.add(npyscreen.TitlePassword, name="Wachtwoord:")
+        #self.password.relx = 50
+        #self.password.rely = 50
+    
+    def afterEditing(self):
+        if self.password.get_value() == "COLOMBUS":
+            self.parentApp.setNextForm("MAIN")
+        else:
+            npyscreen.notify_confirm(f"Fout wachtwoord!", title="Foutmelding")
 
 class MainForm(npyscreen.Form):
     def create(self):
@@ -54,11 +70,13 @@ class WaterOverlast(npyscreen.Form):
         self.parentApp.switchFormPrevious()
 
 
+#class CoordinaatEntry(npyscreen.TitleText):
+
 class BerekenKoers(npyscreen.ActionFormV2):
     def create(self):
         self.add(npyscreen.FixedText, editable=False, value="KOERS BEREKENEN")
         self.locatie = self.add(npyscreen.TitleText, name="Coordinaat huidige locatie")
-        self.bestemming = self.add(npyscreen.TitleText, name="Coordinaat bestemming")
+        self.bestemming = self.add(NumberInput, name="Coordinaat bestemming")
         self.add(
             npyscreen.TitlePager,
             name="Instructies koers instellen",
@@ -68,15 +86,19 @@ class BerekenKoers(npyscreen.ActionFormV2):
         #npyscreen.notify_confirm(f"Zet autopilot uit\nDraai aan stuurwiel\nStel gewenste koers in\nZet autopilot aan", title="Instructies koers instellen")
     
     def on_ok(self):
-        locatie = int(self.locatie.get_value())
-        bestemming = int(self.bestemming.get_value())
-        koers = locatie * bestemming % 360
-        npyscreen.notify_confirm(f"Koers: {koers}", title="Je berekende koers")
+        try:
+            locatie = int(self.locatie.get_value())
+            bestemming = int(self.bestemming.get_value())
+            koers = locatie * bestemming % 360
+            npyscreen.notify_confirm(f"Koers: {koers}", title="Je berekende koers")
+        except:
+            npyscreen.notify_confirm(f"Niet alle waardes zijn ingevuld!", title="Foutmelding")
 
     def on_cancel(self):
         self.parentApp.switchFormPrevious()
 
 if __name__ == '__main__':
     TA = MyTestApp()
+    TA.STARTING_FORM = TA.NEXT_ACTIVE_FORM = "PASSWORDGATE"
     TA.run()
 
