@@ -8,8 +8,6 @@ class MyTestApp(npyscreen.NPSAppManaged):
         self.registerForm("WATEROVERLAST", WaterOverlast())
         self.registerForm("PASSWORDGATE", PasswordGate())
 
-
-
 class PasswordGate(npyscreen.Form):
     def create(self):
         self.add(npyscreen.FixedText, editable=False, value="Welkom, voor het wachtwoord in om toegang te krijgen tot het Ship Operating System!")
@@ -76,7 +74,7 @@ class BerekenKoers(npyscreen.ActionFormV2):
     def create(self):
         self.add(npyscreen.FixedText, editable=False, value="KOERS BEREKENEN")
         self.locatie = self.add(npyscreen.TitleText, name="Coordinaat huidige locatie")
-        self.bestemming = self.add(NumberInput, name="Coordinaat bestemming")
+        self.bestemming = self.add(npyscreen.TitleText, name="Coordinaat bestemming")
         self.add(
             npyscreen.TitlePager,
             name="Instructies koers instellen",
@@ -92,7 +90,7 @@ class BerekenKoers(npyscreen.ActionFormV2):
             koers = locatie * bestemming % 360
             npyscreen.notify_confirm(f"Koers: {koers}", title="Je berekende koers")
         except:
-            npyscreen.notify_confirm(f"Niet alle waardes zijn ingevuld!", title="Foutmelding")
+            npyscreen.notify_confirm(f"De ingevulde waardes zijn onjuist!", title="Foutmelding")
 
     def on_cancel(self):
         self.parentApp.switchFormPrevious()
