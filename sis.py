@@ -90,6 +90,16 @@ def set_autopilot(autopilot):
     status.autopilot = (autopilot.lower() == "true")
 osc_method("/set_autopilot", set_autopilot)
 
+def set_autopilot_uit(autopilot):
+    global status
+    status.autopilot = False
+osc_method("/set_autopilot_uit", set_autopilot_uit)
+
+def set_autopilot_aan(autopilot):
+    global status
+    status.autopilot = True
+osc_method("/set_autopilot_aan", set_autopilot_aan)
+
 def set_kraan1(kraan):
     global status
     status.kraan1 = int(kraan)
