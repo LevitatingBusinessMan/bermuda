@@ -44,7 +44,7 @@ def draw():
 			pos = current_scan_pos
 			#x = math.cos(math.radians(pos-(i/line_multiplier))) * radar_radius + size[0]/2
 			#y = math.sin(math.radians(pos-(i/line_multiplier))) * radar_radius + size[1]/2
-			x, y = line_data[int(pos-(i/line_multiplier))]
+			x, y = line_data[math.floor(pos-(i/line_multiplier))]
 
 			pygame.draw.line(screen,(0,(1-i/(trail_length * line_multiplier))*max_green,0),[size[0]/2,size[1]/2],[x,y],thickness)
 
@@ -78,6 +78,9 @@ while True:
 	pygame.display.update()
 
 	current_scan_pos += 0.5
+
+	if current_scan_pos == 360:
+		current_scan_pos = 0
 
 	clock.tick(60)
 	
