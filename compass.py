@@ -49,6 +49,7 @@ clock = pygame.time.Clock()
 # cat compass.svg | sed s/#333333/#00ff00/ | sed s/#ffffff/#000000/ > compass_green.svg
 dirname = os.path.dirname(__file__)
 compass = pygame.image.load(os.path.join(dirname, 'compass_green.svg'))
+compass = pygame.transform.scale_by(compass, 1.6)
 
 def draw():
 	c_bearing = bearing + natural_deviation
@@ -62,9 +63,9 @@ def draw():
 	#screen.blit(rotated_compass, rotated_rect)
 
 	# Bearing text
-	font = pygame.font.SysFont("Arial", 36)
+	font = pygame.font.SysFont("Arial", 70)
 	bearing_text = font.render(str(round(c_bearing)), True, (0,255,0))
-	bearing_text_pos = (((screen.get_width() - bearing_text.get_rect().width) // 2),10)
+	bearing_text_pos = (((screen.get_width() - bearing_text.get_rect().width) // 2),60)
 	screen.blit(bearing_text, bearing_text_pos)
 
 	pygame.display.flip()
