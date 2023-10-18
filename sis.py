@@ -102,6 +102,17 @@ class Text:
         y = self.y - (self.size[1] / 2.)
         surface.blit(self.txt, (x,y))
 
+wind_longtext = {
+    "N": "NOORD",
+    "NO": "NOORD-OOST",
+    "O": "OOST",
+    "ZO": "ZUID-OOST",
+    "Z": "ZUID",
+    "ZW": "ZUID-WEST",
+    "W": "WEST",
+    "NW": "NOORD-WEST"
+}
+
 # Class voor de kraan levels
 class Kraan:
     def __init__(self, percentage, loc):
@@ -121,23 +132,7 @@ def draw():
 
     # Windrichting
     Text(status.windrichting, (240, 125)).draw(screen)
-    match status.windrichting:
-        case "N":
-            longtxt = "NOORD"
-        case "NO":
-            longtxt = "NOORD-OOST"
-        case "O":
-            longtxt = "OOST"
-        case "ZO":
-            longtxt = "ZUID-OOST"
-        case "Z":
-            longtxt = "ZUID"
-        case "ZW":
-            longtxt = "ZUID-WEST"
-        case "W":
-            longtxt = "WEST"
-        case "NW":
-            longtxt = "NOORD-WEST"
+    longtxt = wind_longtext.get(status.windrichting)
 
     Text(longtxt, (240, 184), "small").draw(screen)
 
