@@ -48,8 +48,8 @@ clock = pygame.time.Clock()
 
 # cat compass.svg | sed s/#333333/#00ff00/ | sed s/#ffffff/#000000/ > compass_green.svg
 dirname = os.path.dirname(__file__)
-compass = pygame.image.load(os.path.join(dirname, 'compass_green.svg'))
-compass = pygame.transform.scale_by(compass, 1.6)
+compass = pygame.image.load(os.path.join(dirname, 'compass_green_resized.png'))
+#compass = pygame.transform.scale_by(compass, 1.6)
 
 def draw():
 	c_bearing = bearing + natural_deviation

@@ -25,18 +25,26 @@ current_scan_pos = -90 # in degrees
 
 dots = [] # a list of dots, a dot is a tuple like: (x,y,size,timestamp)
 
+trail_length = 250 #in degrees
+line_multiplier = 1 #lines per degree
+thickness = 9
+max_green = 100 #where 255 makes it just as bright as the initial line
+
+#precalculated data for performance
+line_data = []
+for i in range(360):
+	x = math.cos(math.radians(i)) * radar_radius + size[0]/2
+	y = math.sin(math.radians(i)) * radar_radius + size[1]/2
+	line_data.append([x,y])
+
 def draw():
 
 		# draw tail
-		trail_length = 250 #in degrees
-		line_multiplier = 1 #lines per degree
-		thickness = 6
-		max_green = 100 #where 255 makes it just as bright as the initial line
-
 		for i in range(trail_length * line_multiplier):
 			pos = current_scan_pos
-			x = math.cos(math.radians(pos-(i/line_multiplier))) * radar_radius + size[0]/2
-			y = math.sin(math.radians(pos-(i/line_multiplier))) * radar_radius + size[1]/2
+			#x = math.cos(math.radians(pos-(i/line_multiplier))) * radar_radius + size[0]/2
+			#y = math.sin(math.radians(pos-(i/line_multiplier))) * radar_radius + size[1]/2
+			x, y = line_data[int(pos-(i/line_multiplier))]
 
 			pygame.draw.line(screen,(0,(1-i/(trail_length * line_multiplier))*max_green,0),[size[0]/2,size[1]/2],[x,y],thickness)
 
@@ -49,6 +57,16 @@ def draw():
 
 		# draw circle
 		pygame.draw.circle(screen,green,[size[0]/2,size[1]/2],radar_radius, 3)
+
+		# draw range circles
+		i = 0
+		while i < radar_radius:
+			i += (radar_radius/4)
+			pygame.draw.circle(screen,green,[size[0]/2,size[1]/2],i, 1)
+
+		# draw directional lines
+		pygame.draw.line(screen, green, [size[0]/2,(size[1]/2) + radar_radius], [size[0]/2,(size[1]/2) - radar_radius])
+		pygame.draw.line(screen, green, [(size[0]/2) - radar_radius, size[1]/2], [(size[0]/2) + radar_radius,size[1]/2])
 
 #Main loop
 while True:
